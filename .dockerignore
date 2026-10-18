@@ -1,0 +1,12 @@
+.git
+.venv
+.tools
+.env
+local-demo
+android
+artifacts
+web/node_modules
+web/dist
+**/__pycache__
+**/*.pem
+**/*.litertlm

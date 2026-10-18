@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd "$(dirname "$0")/.."
+adb_path="${ADB:-adb}"
+out="${DEVICE_EVIDENCE_DIR:-artifacts/device-test}"
+mkdir -p "$out"
+"$adb_path" shell getprop ro.product.manufacturer > "$out/manufacturer.txt"
+"$adb_path" shell getprop ro.product.model > "$out/model.txt"
+"$adb_path" shell getprop ro.build.version.release > "$out/android-version.txt"
+"$adb_path" shell settings get global airplane_mode_on > "$out/airplane-mode.txt"
+"$adb_path" shell dumpsys connectivity > "$out/connectivity.txt"
+"$adb_path" shell run-as org.rescuemesh cat files/model-identity.json > "$out/model-identity.json"
+"$adb_path" shell run-as org.rescuemesh cat files/last-load.json > "$out/last-load.json"
+"$adb_path" shell run-as org.rescuemesh cat files/last-inference.json > "$out/last-inference.json"
+"$adb_path" exec-out screencap -p > "$out/screen.png"
+printf 'Captured physical-device artifacts in %s. Inspect connectivity and visible assessment before claiming offline proof.\n' "$out"

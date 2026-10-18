@@ -1,0 +1,152 @@
+{
+  "$defs": {
+    "Conflict": {
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "maxLength": 600,
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        },
+        "supporting_event_ids": {
+          "items": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "maxItems": 16,
+          "minItems": 1,
+          "title": "Supporting Event Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "text",
+        "supporting_event_ids"
+      ],
+      "title": "Conflict",
+      "type": "object"
+    },
+    "Fact": {
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "maxLength": 600,
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        },
+        "supporting_event_ids": {
+          "items": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "maxItems": 16,
+          "minItems": 1,
+          "title": "Supporting Event Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "text",
+        "supporting_event_ids"
+      ],
+      "title": "Fact",
+      "type": "object"
+    },
+    "Response": {
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "maxLength": 1000,
+          "minLength": 1,
+          "title": "Action",
+          "type": "string"
+        },
+        "prerequisites": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 8,
+          "minItems": 1,
+          "title": "Prerequisites",
+          "type": "array"
+        },
+        "resource_id": {
+          "enum": [
+            "rescue-team-1",
+            "supply-van-1",
+            "none"
+          ],
+          "title": "Resource Id",
+          "type": "string"
+        },
+        "supporting_event_ids": {
+          "items": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "maxItems": 16,
+          "minItems": 1,
+          "title": "Supporting Event Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "action",
+        "prerequisites",
+        "resource_id",
+        "supporting_event_ids"
+      ],
+      "title": "Response",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "observed_facts": {
+      "items": {
+        "$ref": "#/$defs/Fact"
+      },
+      "maxItems": 16,
+      "title": "Observed Facts",
+      "type": "array"
+    },
+    "uncertain_or_conflicting_claims": {
+      "items": {
+        "$ref": "#/$defs/Conflict"
+      },
+      "maxItems": 16,
+      "minItems": 1,
+      "title": "Uncertain Or Conflicting Claims",
+      "type": "array"
+    },
+    "missing_information": {
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 8,
+      "minItems": 1,
+      "title": "Missing Information",
+      "type": "array"
+    },
+    "next_question": {
+      "maxLength": 600,
+      "minLength": 1,
+      "title": "Next Question",
+      "type": "string"
+    },
+    "proposed_response": {
+      "$ref": "#/$defs/Response"
+    }
+  },
+  "required": [
+    "observed_facts",
+    "uncertain_or_conflicting_claims",
+    "missing_information",
+    "next_question",
+    "proposed_response"
+  ],
+  "title": "Assessment",
+  "type": "object"
+}

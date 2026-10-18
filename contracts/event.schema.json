@@ -1,0 +1,362 @@
+{
+  "$defs": {
+    "Assessment": {
+      "additionalProperties": false,
+      "properties": {
+        "observed_facts": {
+          "items": {
+            "$ref": "#/$defs/Fact"
+          },
+          "maxItems": 16,
+          "title": "Observed Facts",
+          "type": "array"
+        },
+        "uncertain_or_conflicting_claims": {
+          "items": {
+            "$ref": "#/$defs/Conflict"
+          },
+          "maxItems": 16,
+          "minItems": 1,
+          "title": "Uncertain Or Conflicting Claims",
+          "type": "array"
+        },
+        "missing_information": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 8,
+          "minItems": 1,
+          "title": "Missing Information",
+          "type": "array"
+        },
+        "next_question": {
+          "maxLength": 600,
+          "minLength": 1,
+          "title": "Next Question",
+          "type": "string"
+        },
+        "proposed_response": {
+          "$ref": "#/$defs/Response"
+        }
+      },
+      "required": [
+        "observed_facts",
+        "uncertain_or_conflicting_claims",
+        "missing_information",
+        "next_question",
+        "proposed_response"
+      ],
+      "title": "Assessment",
+      "type": "object"
+    },
+    "Claim": {
+      "additionalProperties": false,
+      "properties": {
+        "subject": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Subject",
+          "type": "string"
+        },
+        "predicate": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Predicate",
+          "type": "string"
+        },
+        "value": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Value",
+          "type": "string"
+        }
+      },
+      "required": [
+        "subject",
+        "predicate",
+        "value"
+      ],
+      "title": "Claim",
+      "type": "object"
+    },
+    "Conflict": {
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "maxLength": 600,
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        },
+        "supporting_event_ids": {
+          "items": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "maxItems": 16,
+          "minItems": 1,
+          "title": "Supporting Event Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "text",
+        "supporting_event_ids"
+      ],
+      "title": "Conflict",
+      "type": "object"
+    },
+    "Fact": {
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "maxLength": 600,
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        },
+        "supporting_event_ids": {
+          "items": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "maxItems": 16,
+          "minItems": 1,
+          "title": "Supporting Event Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "text",
+        "supporting_event_ids"
+      ],
+      "title": "Fact",
+      "type": "object"
+    },
+    "Payload": {
+      "additionalProperties": false,
+      "properties": {
+        "incident_id": {
+          "pattern": "^[a-zA-Z0-9_-]{1,80}$",
+          "title": "Incident Id",
+          "type": "string"
+        },
+        "location_id": {
+          "enum": [
+            "river-school",
+            "east-bridge",
+            "hill-clinic"
+          ],
+          "title": "Location Id",
+          "type": "string"
+        },
+        "text": {
+          "anyOf": [
+            {
+              "maxLength": 2000,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Text"
+        },
+        "claims": {
+          "items": {
+            "$ref": "#/$defs/Claim"
+          },
+          "maxItems": 8,
+          "title": "Claims",
+          "type": "array"
+        },
+        "assessment": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Assessment"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "provider": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Provider"
+        },
+        "model": {
+          "anyOf": [
+            {
+              "maxLength": 100,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Model"
+        },
+        "evidence_revision": {
+          "anyOf": [
+            {
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Evidence Revision"
+        },
+        "receipt_event_ids": {
+          "items": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "maxItems": 32,
+          "title": "Receipt Event Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "incident_id",
+        "location_id"
+      ],
+      "title": "Payload",
+      "type": "object"
+    },
+    "Response": {
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "maxLength": 1000,
+          "minLength": 1,
+          "title": "Action",
+          "type": "string"
+        },
+        "prerequisites": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 8,
+          "minItems": 1,
+          "title": "Prerequisites",
+          "type": "array"
+        },
+        "resource_id": {
+          "enum": [
+            "rescue-team-1",
+            "supply-van-1",
+            "none"
+          ],
+          "title": "Resource Id",
+          "type": "string"
+        },
+        "supporting_event_ids": {
+          "items": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "maxItems": 16,
+          "minItems": 1,
+          "title": "Supporting Event Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "action",
+        "prerequisites",
+        "resource_id",
+        "supporting_event_ids"
+      ],
+      "title": "Response",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1,
+      "title": "Schema Version",
+      "type": "integer"
+    },
+    "event_id": {
+      "format": "uuid",
+      "title": "Event Id",
+      "type": "string"
+    },
+    "mission_id": {
+      "const": "synthetic-flood-01",
+      "title": "Mission Id",
+      "type": "string"
+    },
+    "origin_device_id": {
+      "pattern": "^[a-f0-9]{32}$",
+      "title": "Origin Device Id",
+      "type": "string"
+    },
+    "origin_sequence": {
+      "exclusiveMinimum": 0,
+      "maximum": 9007199254740991,
+      "title": "Origin Sequence",
+      "type": "integer"
+    },
+    "event_type": {
+      "enum": [
+        "observation",
+        "question",
+        "answer",
+        "assessment",
+        "proposal",
+        "approval",
+        "delivery-receipt"
+      ],
+      "title": "Event Type",
+      "type": "string"
+    },
+    "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+    },
+    "referenced_event_ids": {
+      "items": {
+        "format": "uuid",
+        "type": "string"
+      },
+      "maxItems": 32,
+      "title": "Referenced Event Ids",
+      "type": "array"
+    },
+    "payload": {
+      "$ref": "#/$defs/Payload"
+    }
+  },
+  "required": [
+    "schema_version",
+    "event_id",
+    "mission_id",
+    "origin_device_id",
+    "origin_sequence",
+    "event_type",
+    "created_at",
+    "referenced_event_ids",
+    "payload"
+  ],
+  "title": "Event",
+  "type": "object"
+}

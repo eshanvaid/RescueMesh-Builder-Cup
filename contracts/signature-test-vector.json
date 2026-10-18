@@ -1,0 +1,13 @@
+{
+  "trust": {
+    "mission_id": "synthetic-flood-01",
+    "devices": {
+      "2572fc16406724371815167a25e714fd": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE7IW9t4JJvCUJKmXDrS56g+cq8qqS68Z6djDQaw+WAsAzR9UO2bt9qrWWi2MgfDBymUyrjjISP8LMpzvyzrlqTQ=="
+    }
+  },
+  "envelope": {
+    "event_b64": "ewogICJzY2hlbWFfdmVyc2lvbiI6IDEsCiAgImV2ZW50X2lkIjogIjAwMDAwMDAwLTAwMDAtNDAwMC04MDAwLTAwMDAwMDAwMDAwMSIsCiAgIm1pc3Npb25faWQiOiAic3ludGhldGljLWZsb29kLTAxIiwKICAib3JpZ2luX2RldmljZV9pZCI6ICIyNTcyZmMxNjQwNjcyNDM3MTgxNTE2N2EyNWU3MTRmZCIsCiAgIm9yaWdpbl9zZXF1ZW5jZSI6IDcsCiAgImV2ZW50X3R5cGUiOiAib2JzZXJ2YXRpb24iLAogICJjcmVhdGVkX2F0IjogIjIwMjYtMTAtMTRUMDQ6MDA6MDBaIiwKICAicmVmZXJlbmNlZF9ldmVudF9pZHMiOiBbXSwKICAicGF5bG9hZCI6IHsKICAgICJpbmNpZGVudF9pZCI6ICJpbnRlcm9wLXRlc3QiLAogICAgImxvY2F0aW9uX2lkIjogInJpdmVyLXNjaG9vbCIsCiAgICAidGV4dCI6ICJTeW50aGV0aWM6IOCkteCkv+CkpuCljeCkr+CkvuCksuCkryDigJQgY2Fmw6k7IHJvdXRlIHVua25vd24uIiwKICAgICJjbGFpbXMiOiBbXQogIH0KfQ==",
+    "signature_b64": "MEYCIQC6TWLxN/S7d+kHLPi6hSkT4MQPZ57WyBQJzjxIgbALlwIhAOb6w0+nzZZ4cOp8DmgYiVVj+v8kD2V+ug+vdA/fEK+J"
+  },
+  "note": "Public signature interoperability test vector; private key was discarded. Not a model output."
+}
