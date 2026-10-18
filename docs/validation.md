@@ -2,9 +2,11 @@
 
 ## Verified implementation baseline
 
+[Public submission CI](https://github.com/eshanvaid/RescueMesh-Builder-Cup/actions/runs/39128255641) passed all three jobs on 18 October 2026 at source commit `3ce4c85ff57258a1291a920c9435a1b0018c7c08`: Android APK/JVM tests/lint, backend/web and container startup/protected-write smoke checks. This verifies the submission copy independently of the private development repository.
+
 - 23 Python tests passed on 18 October 2026 in the submission copy; includes a cloud-bootstrap test proving gateway-only authentication, signed originals, idempotent seed uploads and no seeded proposals; also covers duplicate/out-of-order delivery, repeated uploads, SQLite restart, signatures and authorization, preserved conflicts, bounded assessment validation/repair, stale approval rejection and competing resource transactions.
-- 9 Android JVM tests passed in the original implementation CI; shared original-byte signature verification, tampering, authorization, packet bounds and assessment validation. Android app/test APKs compile; lint passes with warnings. These results are inherited baseline results until a new repository CI run completes.
-- TypeScript/Vite production build passed. The original implementation container built, served dashboard/API and denied an unauthenticated write in CI.
+- 9 Android JVM tests passed in the original implementation baseline, and the submission CI reran the same JVM suite successfully; shared original-byte signature verification, tampering, authorization, packet bounds and assessment validation. Android app APK compiles; lint passes with warnings. The instrumentation APK compiled in the original baseline; its execution remains pending.
+- TypeScript/Vite production build passed. The submission container built, served dashboard/API and denied an unauthenticated write in public CI.
 - A three-store SQLite test simulates transfer and restart; it does not exercise Room or physical Nearby radios. Schema tests use authored fixtures; they are not model-quality evaluation results.
 
 ## Acceptance still pending

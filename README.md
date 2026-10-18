@@ -4,6 +4,8 @@
 
 RescueMesh helps responders preserve incident evidence when internet access is unavailable. One Android application combines observer, relay and gateway roles. A web dashboard brings original reports, contradictions, proposed responses and human approvals into one view. All example data is synthetic.
 
+![Actual local synthetic dashboard](docs/images/dashboard.png)
+
 ## Prototype status
 
 The Android APK compiles, and the backend/dashboard run locally. Automated tests cover signed event ingestion, duplicate and out-of-order delivery, persistence, conflicting evidence and transactional approval safeguards. Physical Gemma inference, Nearby radio transfers, live Firestore/Gemini and Cloud Run deployment remain unverified. Integration code is present; these are separate acceptance gates.
@@ -63,7 +65,7 @@ npm run build --prefix web
 ./android/gradlew -p android :app:connectedDebugAndroidTest
 ```
 
-See [validation](docs/validation.md), [architecture](docs/architecture.md), [event contract](contracts/README.md) and the separate [model evaluation set](evals/README.md).
+See [validation](docs/validation.md), [architecture](docs/architecture.md), [event contract](contracts/README.md), [3-4 minute demo guide](docs/demo-video.md) and the separate [model evaluation set](evals/README.md).
 
 ## Boundaries
 
